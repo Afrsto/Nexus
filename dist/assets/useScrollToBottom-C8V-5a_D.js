@@ -1,0 +1,1 @@
+import{r as t}from"./index-B0slALTf.js";const n=120;function f(e=[]){const r=t.useRef(null),l=t.useCallback((s=!1)=>{const o=r.current;if(!o)return;const c=o.scrollHeight-o.scrollTop-o.clientHeight<n;(s||c)&&(o.scrollTop=o.scrollHeight)},[]);return t.useEffect(()=>{l()},e),r}export{f as u};

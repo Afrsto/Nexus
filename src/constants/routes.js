@@ -1,0 +1,17 @@
+export const ROUTES = {
+  HOME: "/",
+  LOGIN: "/login",
+  REGISTER: "/register",
+  CHATS: "/chats",
+  CHAT: "/chats/:chatId",
+  ROOMS: "/rooms",
+  ROOM: "/rooms/:roomId",
+  ROOM_CHANNEL: "/rooms/:roomId/channels/:channelId",
+  NOTIFICATIONS: "/notifications",
+  PROFILE: "/profile",
+  PROFILE_USER: "/profile/:username",
+  SETTINGS: "/settings",
+  EXPLORE: "/explore",
+  FRIENDS: "/friends",
+  NOT_FOUND: "*",
+};
