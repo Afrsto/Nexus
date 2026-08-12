@@ -2,8 +2,15 @@ import { useEffect } from "react";
 import { RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { router } from "@/router";
+import { useAuthStore } from "@/store/useAuthStore";
 import { useThemeStore } from "@/store/useThemeStore";
 import ErrorBoundary from "@/components/common/ErrorBoundary";
+
+const AUTH_HYDRATE_TIMEOUT_MS = 2000;
+
+function markAuthHydrated() {
+  useAuthStore.setState({ hasHydrated: true, isLoading: false });
+}
 
 export default function App() {
   const hydrate = useThemeStore((s) => s.hydrate);
@@ -11,6 +18,22 @@ export default function App() {
   useEffect(() => {
     hydrate();
   }, [hydrate]);
+
+  useEffect(() => {
+    const finish = () => markAuthHydrated();
+
+    if (useAuthStore.persist.hasHydrated()) {
+      finish();
+    }
+
+    const unsub = useAuthStore.persist.onFinishHydration(finish);
+    const timer = setTimeout(finish, AUTH_HYDRATE_TIMEOUT_MS);
+
+    return () => {
+      unsub();
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <ErrorBoundary>
