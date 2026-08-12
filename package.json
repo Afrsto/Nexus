@@ -5,11 +5,11 @@
   "description": "Nexus — A modern social messaging platform combining Instagram-style feeds, Discord-style rooms, and Telegram-style channels.",
   "type": "module",
   "engines": {
-    "node": ">=18"
+    "node": "20.x"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node ./node_modules/vite/bin/vite.js build",
     "preview": "vite preview",
     "lint": "eslint src --ext .js,.jsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --ext .js,.jsx --fix",
